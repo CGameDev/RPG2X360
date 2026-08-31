@@ -1,0 +1,41 @@
+{
+  "project": "RPG2X360 Porting Toolkit",
+  "packageVersion": "2.0",
+  "primarySourceEngine": "RPG Maker XP",
+  "scriptingSystem": "RGSS1 / Ruby 1.8-series static analysis target",
+  "hostUi": "WPF / MVVM",
+  "hostFramework": ".NET 10 LTS",
+  "runtimeTarget": "Unity 5.4.1f / Xbox 360",
+  "securityModel": "Read-only source; no Game.exe, RGSS DLL, or Ruby execution during conversion",
+  "rgssStrategy": [
+    "Native IR",
+    "Bounded auto-translation subset",
+    "Runtime shims",
+    "Generated manual-port stubs",
+    "Explicit unsupported/blocking"
+  ],
+  "milestones": [
+    {"id":"M00","name":"Repository Foundation & Safety Contract"},
+    {"id":"M01","name":"RMXP Detection, Game.ini & Source Snapshot"},
+    {"id":"M02","name":"Ruby Marshal / RXDATA Decoder Foundation"},
+    {"id":"M03","name":"Database Import"},
+    {"id":"M04","name":"Maps, Tables, Events & Event Commands"},
+    {"id":"M05","name":"Scripts.rxdata Extraction & RGSS Inventory"},
+    {"id":"M06","name":"RGSS Static Analyzer & Compatibility Tiers"},
+    {"id":"M07","name":"RPG2X360 IR v1 & Event Compiler"},
+    {"id":"M08","name":"RGSS Auto-Subset, Shim Bindings & Manual Port Stubs"},
+    {"id":"M09","name":"Asset & RTP Dependency Pipeline"},
+    {"id":"M10","name":"Converter UX, CLI & Preview Release"},
+    {"id":"M11","name":"Unity 5.4.1f Runtime Bootstrap"},
+    {"id":"M12","name":"Map Rendering, Tiles, Camera & Player Movement"},
+    {"id":"M13","name":"Event Interpreter Vertical Slice"},
+    {"id":"M14","name":"Core UI, Audio, Save/Load & Scene Services"},
+    {"id":"M15","name":"Stock Battle-System Baseline"},
+    {"id":"M16","name":"RGSS Runtime Shim Catalog v1"},
+    {"id":"M17","name":"Xbox 360 Input, Storage & Performance Integration"},
+    {"id":"M18","name":"First Xbox 360 XEX Smoke Test"},
+    {"id":"M19","name":"Complete Basic RMXP Game Vertical Slice"},
+    {"id":"M20","name":"Compatibility Hardening & Real-World Corpus"},
+    {"id":"M21","name":"v2.0 Release Candidate"}
+  ]
+}
