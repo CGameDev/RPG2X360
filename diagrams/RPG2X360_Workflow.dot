@@ -1,0 +1,38 @@
+digraph RPG2X360 {
+  graph [rankdir=TB, bgcolor="white", pad=0.25, nodesep=0.35, ranksep=0.45];
+  node [shape=box, style="rounded,filled", fillcolor="white", fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9];
+
+  src [label="RPG Maker XP Project\n(Read-Only Source)"];
+  validate [label="Validate + Fingerprint\nGame.rxproj / Game.ini / Data"];
+  rx [label="Static Ruby Marshal Decoder\nData/*.rxdata"];
+  import [label="Import Database / Maps / Events\nAssets + Dependencies"];
+  scripts [label="Scripts.rxdata\nExtract + Zlib Decompress"];
+  analyze [label="Static RGSS Analysis\nSymbols / API / Patches / Risk"];
+  compat [label="Compatibility Engine"];
+  a [label="Tier A\nNative IR"];
+  b [label="Tier B\nBounded Auto-Translation"];
+  c [label="Tier C\nRuntime Shim"];
+  d [label="Tier D\nManual C# Port Stub"];
+  e [label="Tier E\nUnsupported / Blocking"];
+  assets [label="Asset + RTP Dependency Pipeline"];
+  ir [label="Versioned RPG2X360 IR Package"];
+  unity [label="Unity 5.4.1f RPG2X Runtime"];
+  test [label="PC Runtime / Regression Tests"];
+  build [label="Xbox 360 Build\nAuthorized Local Toolchain"];
+  hw [label="RGH/JTAG Xbox 360\nHardware Validation"];
+
+  src -> validate;
+  validate -> rx;
+  rx -> import;
+  validate -> scripts;
+  scripts -> analyze;
+  import -> compat;
+  analyze -> compat;
+  {rank=same; a; b; c; d; e;}
+  a -> b -> c -> d -> e [style=invis, weight=10];
+  compat -> a; compat -> b; compat -> c; compat -> d; compat -> e;
+  a -> ir; b -> ir; c -> ir; d -> ir; e -> ir;
+  import -> assets; assets -> ir;
+  ir -> unity -> test -> build -> hw;
+}
