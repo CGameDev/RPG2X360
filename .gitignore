@@ -1,0 +1,68 @@
+# RPG2X360 local/build outputs
+
+# Visual Studio / .NET
+.vs/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.pdb
+*.cache
+*.log
+
+# JetBrains / VS Code local state
+.idea/
+.vscode/
+
+# NuGet/packages and temporary restore outputs
+packages/
+*.nupkg
+*.snupkg
+
+# Generated/transient conversion output
+out/
+output/
+build/
+builds/
+artifacts/
+cache/
+temp/
+tmp/
+*.tmp
+
+# Xbox 360/XDK generated binaries and machine-specific SDK material
+*.xex
+*.xexp
+*.xexb
+*.xdb
+*.map
+*.ilk
+*.lib
+*.exp
+*.obj
+*.pch
+*.res
+*.xur
+
+# Unity generated directories if an export workspace is generated locally
+Library/
+Temp/
+Logs/
+UserSettings/
+MemoryCaptures/
+
+# Local secrets/config
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
