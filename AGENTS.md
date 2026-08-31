@@ -1,71 +1,65 @@
-# RPG2X360 — Codex Repository Instructions
+# AGENTS.md — RPG2X360 Permanent Engineering Rules
 
-## Authority
+These rules apply to every Codex session in this repository.
 
-This repository is the canonical source of truth for the RPG2X360 project.
+## 1. Product definition
+RPG2X360 is an **RMXP-first porting toolkit**. It reads RPG Maker XP projects, produces compatibility evidence, converts supported behavior into a versioned intermediate representation, and exports packages for a separate Unity 5.4.1f Xbox 360 runtime.
 
-The project milestone and specifications migrated from `RPG2X360_RMXP_First_Codex_Project_Pack_v2.0` are authoritative for the first implementation effort. Codex MUST read the repository documentation and active milestone before changing source code.
+## 2. Source projects are read-only and untrusted
+- Never modify the user's RMXP source project in place.
+- Never launch `Game.exe` as part of import, detection, analysis or testing.
+- Never load or execute the source RGSS DLL.
+- Never `eval`, invoke, interpret or dynamically load Ruby code from `Scripts.rxdata` during converter operation.
+- Never run arbitrary native DLLs referenced by a game.
+- Copy test inputs into disposable fixture directories when mutation is required by a test.
+- Output is written only under an explicitly selected RPG2X360 workspace/output directory.
 
-If a repository document and an assumption conflict, the repository document wins.
+## 3. No silent compatibility loss
+Every source feature must end in a visible status: Supported, AutoTranslated, RuntimeShim, ManualPortRequired, Unsupported, Unknown or Blocking.
 
-## Core project rule
+If data is not understood, preserve its raw representation or a traceable source reference where legally/technically possible. Do not drop it.
 
-RPG2X360 is not permission to redesign the requested workflow or silently substitute a different RPG Maker generation, runtime, export target, architecture, or development stack.
+## 4. RGSS scope discipline
+Do not claim general Ruby semantic equivalence until a test corpus proves it. Prefer a conservative static subset, explicit runtime shims and generated manual-port stubs.
 
-For the RMXP milestone:
+Dynamic/metaprogramming features such as `eval`, dynamic class mutation, runtime code generation, native/Win32 calls or unknown binary extensions are never auto-translated merely because parsing succeeded.
 
-- RPG Maker XP / RMXP is the required source-project target unless the milestone explicitly says otherwise.
-- Preserve the milestone's conversion workflow, compatibility model, deliverables, validation gates, and Xbox 360 target strategy.
-- Do not silently switch the first implementation target to RPG Maker MV, VX, VX Ace, MZ, or another engine generation.
-- Do not invent missing requirements. Record a requirement gap and continue with work that is unblocked.
-- Do not delete milestone documentation when implementation begins.
+## 5. Runtime separation
+- The Windows converter may use modern .NET 10/C#.
+- The Unity 5.4.1f runtime must use language/runtime features compatible with that Unity/Xbox 360 toolchain.
+- Do not share compiled modern .NET assemblies directly with Unity 5.4.1f.
+- The stable integration boundary is the versioned RPG2X360 IR package/schema.
 
-## Work discipline
+## 6. Xbox development boundary
+Do not add, copy or distribute proprietary Xbox SDK/XDK files, signing keys or licensed middleware. Build integration must use paths/configuration supplied on the authorized development machine.
 
-Before implementation:
+## 7. Proprietary RPG Maker content
+Do not bundle Enterbrain/Gotcha Gotcha Games runtime DLLs, RTP assets or third-party game assets in the repository or fixtures. Tests use synthetic fixtures or user-supplied local content excluded by `.gitignore`.
 
-1. Read this `AGENTS.md`.
-2. Read the root `README.md`.
-3. Read the active milestone and all documents it names as required reading.
-4. Inspect the current repository instead of assuming project state.
-5. Inspect the local development environment instead of inventing installed SDK/tool paths.
-6. Record material environment findings in repository documentation when the milestone requires it.
+## 8. Milestone discipline
+Implement one milestone at a time. Before coding:
+1. inspect repository status and existing user changes;
+2. read this file and the current milestone section;
+3. state affected components and test plan;
+4. preserve source compatibility and previous acceptance gates.
 
-During implementation:
+After coding:
+1. build all affected projects;
+2. run unit/regression tests;
+3. record accepted/partial/failed criteria;
+4. update docs and compatibility matrix;
+5. stop at the milestone gate unless explicitly instructed to continue.
 
-- Work in small, coherent checkpoints.
-- Keep architecture separable between project analysis/import, intermediate representation/conversion, export/runtime generation, UI, and platform-specific code where specified by the milestone.
-- Prefer deterministic conversion and auditable compatibility reporting over hidden best-effort behavior.
-- Preserve unsupported/partial/converted status reporting where required.
-- Keep generated build output, local SDK files, credentials, proprietary toolchains, caches, and machine-specific artifacts out of Git.
-- Do not commit Xbox 360 XDK files or other non-redistributable SDK components.
-- Do not claim target-hardware success without target-hardware evidence.
-- Do not mark a milestone complete while required acceptance criteria are unresolved.
+## 9. Determinism and traceability
+Every conversion output should include source fingerprints, tool version, IR format version, compatibility summary and deterministic IDs where possible. Two conversions of the same unchanged source with the same settings should be semantically identical.
 
-## Testing rule
+## 10. Performance priority
+Favor streaming parsers, bounded memory use and cancellable async host operations. Xbox runtime code must avoid unnecessary allocations in per-frame paths and should be profiled against real console constraints before optimization claims are accepted.
 
-Batch meaningful implementation work before expensive/manual target-hardware testing when the active milestone permits it. Do not replace required validation with superficial smoke tests.
-
-A passing desktop/unit test does not prove Xbox 360 runtime compatibility.
-
-## Documentation rule
-
-When implementation reveals a confirmed constraint, compatibility limitation, architectural decision, or toolchain requirement, update the relevant documentation in the same workstream so future Codex sessions do not have to rediscover it.
-
-## Scope protection
-
-Do not:
-
-- rewrite the project into an unrelated game engine;
-- collapse the conversion pipeline into UI code;
-- hide unsupported RPG Maker constructs;
-- fabricate successful conversion of unsupported scripts/plugins/assets;
-- commit proprietary SDK/toolchain binaries;
-- overwrite working milestone checkpoints without preserving history;
-- start later milestones merely because implementation is possible when the current milestone's acceptance gates are incomplete.
-
-## Git workflow
-
-Use meaningful commits and keep `main` in a recoverable state. For substantial implementation milestones, prefer a milestone/feature branch and a reviewable merge back to `main`.
-
-Repository documentation is part of the product and must remain versioned alongside source code.
+## 11. Repository coordination
+- `https://github.com/CGameDev/RPG2X360` is the canonical project repository.
+- The v2.0 RMXP-first master milestone and its referenced documents are authoritative. Do not silently replace the RMXP-first target, Unity 5.4.1f runtime strategy, RGSS tier model, IR boundary or milestone gates.
+- Read `CODEX_MASTER_IMPLEMENTATION_PROMPT.md` before executing an implementation milestone.
+- Preserve milestone documents, evidence and checkpoint history as implementation progresses.
+- Keep `main` recoverable. Use meaningful commits and prefer a milestone/feature branch for substantial implementation work.
+- Never claim Xbox 360 hardware validation without recorded target-hardware evidence.
