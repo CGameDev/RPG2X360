@@ -55,11 +55,3 @@ Every conversion output should include source fingerprints, tool version, IR for
 
 ## 10. Performance priority
 Favor streaming parsers, bounded memory use and cancellable async host operations. Xbox runtime code must avoid unnecessary allocations in per-frame paths and should be profiled against real console constraints before optimization claims are accepted.
-
-## 11. Repository coordination
-- `https://github.com/CGameDev/RPG2X360` is the canonical project repository.
-- The v2.0 RMXP-first master milestone and its referenced documents are authoritative. Do not silently replace the RMXP-first target, Unity 5.4.1f runtime strategy, RGSS tier model, IR boundary or milestone gates.
-- Read `CODEX_MASTER_IMPLEMENTATION_PROMPT.md` before executing an implementation milestone.
-- Preserve milestone documents, evidence and checkpoint history as implementation progresses.
-- Keep `main` recoverable. Use meaningful commits and prefer a milestone/feature branch for substantial implementation work.
-- Never claim Xbox 360 hardware validation without recorded target-hardware evidence.
