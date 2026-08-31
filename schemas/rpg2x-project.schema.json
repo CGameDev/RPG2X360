@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rpg2x360:project-manifest:1.0",
+  "title": "RPG2X360 Project Manifest",
+  "type": "object",
+  "required": [
+    "formatVersion",
+    "generator",
+    "sourceEngine",
+    "projectName",
+    "sourceFingerprint",
+    "compatibility",
+    "runtimeMinimum"
+  ],
+  "properties": {
+    "formatVersion": {
+      "type": "string",
+      "pattern": "^1\\."
+    },
+    "generator": {
+      "const": "RPG2X360"
+    },
+    "sourceEngine": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "sourceFingerprint": {
+      "type": "string"
+    },
+    "runtimeMinimum": {
+      "type": "string"
+    },
+    "compatibility": {
+      "type": "object",
+      "required": [
+        "headline",
+        "blockingCount",
+        "manualPortCount"
+      ],
+      "properties": {
+        "headline": {
+          "type": "string"
+        },
+        "blockingCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manualPortCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
