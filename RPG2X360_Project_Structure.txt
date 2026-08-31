@@ -1,0 +1,73 @@
+RPG2X360/
+|
+|-- AGENTS.md
+|-- README.md
+|-- RPG2X360.sln
+|-- Directory.Build.props
+|-- Directory.Packages.props
+|-- .gitignore
+|
+|-- src/
+|   |-- RPG2X360.Desktop/
+|   |-- RPG2X360.Core/
+|   |-- RPG2X360.Models/
+|   |-- RPG2X360.Rmxp/
+|   |   |-- Detection/
+|   |   |-- Ini/
+|   |   |-- Marshal/
+|   |   |-- RxData/
+|   |   |-- Database/
+|   |   |-- Maps/
+|   |   |-- Events/
+|   |   `-- Scripts/
+|   |-- RPG2X360.Rgss/
+|   |   |-- Parsing/
+|   |   |-- Symbols/
+|   |   |-- ApiCatalog/
+|   |   `-- RiskRules/
+|   |-- RPG2X360.Analysis/
+|   |   |-- Compatibility/
+|   |   |-- Readiness/
+|   |   |-- Shims/
+|   |   `-- Dependencies/
+|   |-- RPG2X360.Conversion/
+|   |   |-- Intermediate/
+|   |   |-- Events/
+|   |   |-- RgssSubset/
+|   |   `-- ManualPort/
+|   |-- RPG2X360.Export/
+|   |   |-- Packages/
+|   |   |-- Json/
+|   |   |-- Assets/
+|   |   `-- Unity54/
+|   |-- RPG2X360.Diagnostics/
+|   `-- RPG2X360.Cli/
+|
+|-- tests/
+|   |-- RPG2X360.Tests/
+|   |-- Fixtures.Synthetic/
+|   `-- Golden/
+|
+|-- runtime/
+|   `-- Unity54/
+|       `-- RPG2X360.Runtime.Unity54/
+|           |-- Assets/RPG2X360/Runtime/
+|           |   |-- Core/
+|           |   |-- Import/
+|           |   |-- Maps/
+|           |   |-- Events/
+|           |   |-- UI/
+|           |   |-- Audio/
+|           |   |-- Battle/
+|           |   |-- Save/
+|           |   |-- Input/
+|           |   |-- Shims/
+|           |   `-- Diagnostics/
+|           `-- ProjectSettings/
+|
+|-- docs/
+|-- schemas/
+|-- samples/
+|-- tools/
+|-- evidence/
+`-- releases/
